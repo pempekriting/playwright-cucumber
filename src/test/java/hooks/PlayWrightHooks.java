@@ -15,6 +15,6 @@ public class PlayWrightHooks {
 
     @After
     public void closeBrowser() {
-        //basePage.closePageInstance();
+        basePage.closePageInstance();
     }
 }

@@ -16,8 +16,7 @@ public class BasePage {
     }
 
     public void closePageInstance() {
-        playwright.close();
-        context.close();
+        page.close();
     }
 
     public Page getPage() {
