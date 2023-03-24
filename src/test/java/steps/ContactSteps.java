@@ -1,6 +1,5 @@
 package steps;
 
-import hooks.PlayWrightHooks;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.playwright.base.BasePage;
@@ -10,7 +9,7 @@ public class ContactSteps extends BasePage {
     ContactPage contactPage = new ContactPage(getPage());
 
     @When("User fill the form")
-    public void userFillTheForm(){
+    public void userFillTheForm() {
         contactPage.inputContactEmail()
                 .inputContactName()
                 .inputMessage()

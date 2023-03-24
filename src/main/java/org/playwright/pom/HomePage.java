@@ -1,28 +1,30 @@
 package org.playwright.pom;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.AriaRole;
 
 public class HomePage {
-    private final Page page;
-    ContactPage contactPage;
 
-    public static final String btnHomeMenu = "//a[.='Home (current)']";
-    public static final String btnContactMenu = "//a[.='Contact']";
+    private final Page page;
+    private final Locator btnHomeMenu;
+    private final Locator btnContactMenu;
 
     public HomePage(Page page) {
         this.page = page;
-        contactPage = new ContactPage(page);
+        this.btnHomeMenu = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Home (current)"));
+        this.btnContactMenu = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Contact"));
     }
 
     public void navigate() {
         page.navigate("https://www.demoblaze.com/");
     }
+
     public void clickButtonHomeMenu() {
-        page.click(btnHomeMenu);
+        btnHomeMenu.click();
     }
 
-    public ContactPage clickButtonContactMenu() {
-        page.click(btnContactMenu);
-        return contactPage;
+    public void clickButtonContactMenu() {
+        btnContactMenu.click();
     }
 }

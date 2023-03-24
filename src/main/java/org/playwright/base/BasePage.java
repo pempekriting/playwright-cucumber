@@ -3,6 +3,7 @@ package org.playwright.base;
 import com.microsoft.playwright.*;
 
 public class BasePage {
+
     protected static Playwright playwright;
     protected static Browser browser;
     protected static BrowserContext context;
@@ -10,13 +11,16 @@ public class BasePage {
 
     public void createPageInstance() {
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(false));
+        browser = playwright.chromium().launch();
         context = browser.newContext();
         page = context.newPage();
     }
 
     public void closePageInstance() {
         page.close();
+        context.close();
+        browser.close();
+        playwright.close();
     }
 
     public Page getPage() {
